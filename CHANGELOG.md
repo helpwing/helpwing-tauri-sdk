@@ -3,7 +3,7 @@
 `tauri-plugin-helpwing` (crates.io) and `@helpwing/tauri` (npm) are released together under
 one version. The tag is the release: `v0.1.0` publishes 0.1.0 of both.
 
-## Unreleased
+## 0.1.0
 
 - **Initial release.** The Helpwing support chat for Tauri 2 apps, at parity with
   `@helpwing/react-native`:
