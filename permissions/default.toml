@@ -1,0 +1,17 @@
+"$schema" = "schemas/schema.json"
+
+[default]
+description = "Everything the Helpwing chat needs: load it, send and retry messages, identify the visitor, report presence and open links from agent replies."
+permissions = [
+    "allow-start",
+    "allow-state",
+    "allow-send",
+    "allow-retry",
+    "allow-identify",
+    "allow-set-present",
+    "allow-set-active",
+    "allow-mark-read",
+    "allow-refresh",
+    "allow-reset",
+    "allow-open-link",
+]

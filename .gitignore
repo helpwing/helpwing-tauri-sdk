@@ -1,0 +1,17 @@
+# Rust
+/target
+Cargo.lock
+
+# JS
+node_modules/
+dist-js/
+*.tsbuildinfo
+*.tgz
+coverage/
+
+.DS_Store
+.idea/
+.vscode/
+*.log
+.env
+.env.*

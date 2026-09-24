@@ -1,0 +1,58 @@
+{
+  "name": "@helpwing/tauri",
+  "version": "0.1.0",
+  "description": "Helpwing support chat for Tauri apps: JS bindings and chat elements for tauri-plugin-helpwing.",
+  "license": "MIT",
+  "homepage": "https://helpwing.app/docs/tauri",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helpwing/helpwing-tauri-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/helpwing/helpwing-tauri-sdk/issues"
+  },
+  "type": "module",
+  "main": "./dist-js/index.js",
+  "module": "./dist-js/index.js",
+  "types": "./dist-js/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-js/index.d.ts",
+      "import": "./dist-js/index.js"
+    }
+  },
+  "files": [
+    "dist-js",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist-js"
+  },
+  "keywords": [
+    "helpwing",
+    "support",
+    "chat",
+    "tauri",
+    "tauri-plugin"
+  ],
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "devDependencies": {
+    "happy-dom": "^15.11.7",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
