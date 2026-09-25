@@ -26,7 +26,7 @@ function config(overrides: Partial<WidgetConfig> = {}): WidgetConfig {
 }
 
 const TRANSLATED = config({
-  translations: { ru: { greeting: 'Здравствуйте! Чем можем помочь?' } },
+  translations: { ru: { greeting: 'Здравствуйте! Чем можем помочь?', typing_text: '{name} печатает…' } },
 })
 
 describe('Copy.forLocale', () => {
@@ -55,6 +55,12 @@ describe('Copy.forLocale', () => {
 
   it('is empty before the config has arrived, rather than throwing', () => {
     expect(Copy.forLocale(null, 'greeting', 'ru')).toBe('')
+  })
+
+  it('resolves typing_text the same way, blank when the project wrote none', () => {
+    expect(Copy.forLocale(TRANSLATED, 'typing_text', 'ru')).toBe('{name} печатает…')
+    expect(Copy.forLocale(TRANSLATED, 'typing_text', 'de')).toBe('')
+    expect(Copy.forLocale(config(), 'typing_text', 'ru')).toBe('')
   })
 })
 

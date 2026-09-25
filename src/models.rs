@@ -203,13 +203,16 @@ mod tests {
             "is_enabled": true,
             "is_online": false,
             "accent_color": "#2563eb",
-            "translations": {"ru": {"greeting": "Привет"}}
+            "typing_text": "{name} is writing…",
+            "translations": {"ru": {"greeting": "Привет", "typing_text": "{name} печатает…"}}
         }))
         .unwrap();
         assert!(!config.hide_when_closed);
         let back = serde_json::to_value(&config).unwrap();
         assert_eq!(back["accent_color"], "#2563eb");
+        assert_eq!(back["typing_text"], "{name} is writing…");
         assert_eq!(back["translations"]["ru"]["greeting"], "Привет");
+        assert_eq!(back["translations"]["ru"]["typing_text"], "{name} печатает…");
         assert_eq!(back["is_enabled"], true);
     }
 

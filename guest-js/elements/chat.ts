@@ -248,7 +248,7 @@ export class HelpwingChatElement extends ElementBase {
     if (state.messages !== this.drawnMessages || config !== this.drawnConfig) this.drawTranscript(state, text)
 
     dom.typing.hidden = !state.typing
-    dom.typing.textContent = state.typing ? text.typing(state.typing.name) : ''
+    dom.typing.textContent = state.typing ? this.typingText(state.config, state.typing.name, text) : ''
 
     dom.email.hidden = !this.askForEmail(state)
     dom.email.placeholder = text.emailPlaceholder
@@ -261,6 +261,16 @@ export class HelpwingChatElement extends ElementBase {
     dom.branding.textContent = text.branding
   }
 
+  /** The project's own typing text, `{name}` filled in; the built-in label when it wrote none. */
+  private typingText(config: WidgetConfig | null, name: string, text: ChatLabels): string {
+    const projectText = Copy.forLocale(config, 'typing_text', this.resolvedLocale())
+    return projectText ? projectText.replaceAll('{name}', name) : text.typing(name)
+  }
+
+  private resolvedLocale(): string | undefined {
+    return this.localeValue ?? (typeof navigator !== 'undefined' ? navigator.language : undefined)
+  }
+
   private drawTranscript(state: ChatState, text: ChatLabels): void {
     const transcript = (this.dom as ChatDom).transcript
     const previous = this.drawnMessages?.length ?? 0
@@ -269,7 +279,7 @@ export class HelpwingChatElement extends ElementBase {
     this.drawnConfig = state.config
 
     if (!state.messages.length) {
-      const locale = this.localeValue ?? (typeof navigator !== 'undefined' ? navigator.language : undefined)
+      const locale = this.resolvedLocale()
       const offline = Copy.forLocale(state.config, 'offline_message', locale)
       const greeting = div('greeting')
       greeting.textContent =

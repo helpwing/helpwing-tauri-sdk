@@ -117,6 +117,30 @@ describe('<helpwing-chat>', () => {
     expect(shadow(element).querySelector('.greeting')?.textContent).toBe('We are offline right now.')
   })
 
+  it('shows the built-in typing label, or the project’s own when it wrote one', () => {
+    const chat = new FakeChat()
+    const element = mountChat(chat)
+    chat.push({ status: 'ready', config: CONFIG, typing: { name: 'Ann' } })
+    expect(shadow(element).querySelector('.typing')?.textContent).toBe('Ann is typing…')
+
+    chat.push({ config: { ...CONFIG, typing_text: '{name} is writing…' } })
+    expect(shadow(element).querySelector('.typing')?.textContent).toBe('Ann is writing…')
+
+    chat.push({ typing: null })
+    expect((shadow(element).querySelector('.typing') as HTMLElement).hidden).toBe(true)
+  })
+
+  it('lets an integrator’s typing label stand in only where the project wrote none', () => {
+    const chat = new FakeChat()
+    const element = mountChat(chat)
+    element.labels = { typing: (name) => `${name}…` }
+    chat.push({ status: 'ready', config: CONFIG, typing: { name: 'Ann' } })
+    expect(shadow(element).querySelector('.typing')?.textContent).toBe('Ann…')
+
+    chat.push({ config: { ...CONFIG, typing_text: '{name} is writing…' } })
+    expect(shadow(element).querySelector('.typing')?.textContent).toBe('Ann is writing…')
+  })
+
   it('says the chat is unavailable when the project has none right now', () => {
     const chat = new FakeChat()
     const element = mountChat(chat)

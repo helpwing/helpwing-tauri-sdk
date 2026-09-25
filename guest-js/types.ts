@@ -16,7 +16,9 @@ export interface WidgetConfig {
   title?: string
   greeting: string
   offline_message: string
-  /** Per-language title, greeting and offline message, keyed by language code. */
+  /** Shown while an agent is typing. May contain `{name}`. Blank when the project wrote none. */
+  typing_text?: string
+  /** Per-language title, greeting, offline message and typing text, keyed by language code. */
   translations?: Record<string, Record<string, string>>
   default_locale?: string
   require_email: boolean

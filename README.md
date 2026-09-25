@@ -145,11 +145,15 @@ chat.labels = { placeholder: 'Écrivez un message…', send: 'Envoyer' }
 
 or as JSON in the `labels` attribute. `DEFAULT_LABELS` is exported with the whole list.
 
-**What the project wrote** (the header, the greeting and the offline message) is
-translated in the dashboard under **Chat widget → Appearance**. The `locale` attribute picks
-which translation to show, and defaults to `navigator.language`. `ru-RU` finds `ru`. A
-language the project has not translated falls back to the untranslated text, never to a
-stock line of ours.
+**What the project wrote** (the header, the greeting, the offline message and the typing
+text) is translated in the dashboard under **Chat widget → Appearance**. The `locale`
+attribute picks which translation to show, and defaults to `navigator.language`. `ru-RU`
+finds `ru`. A language the project has not translated falls back to the untranslated text,
+never to a stock line of ours.
+
+The typing text replaces `labels.typing` while an agent is typing, with `{name}` filled in
+with the agent's name. A project that has not written one keeps the built-in
+`labels.typing` label, so overriding it still works for projects that leave typing text blank.
 
 ## Colours
 

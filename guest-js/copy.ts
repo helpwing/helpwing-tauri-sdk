@@ -5,7 +5,7 @@ export class Copy {
   /** The translation for `locale`, else what the project wrote without one. Never a stock line. */
   static forLocale(
     config: WidgetConfig | null,
-    field: 'title' | 'greeting' | 'offline_message',
+    field: 'title' | 'greeting' | 'offline_message' | 'typing_text',
     locale?: string,
   ): string {
     if (!config) return ''
